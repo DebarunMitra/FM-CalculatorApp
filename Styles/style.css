@@ -1,0 +1,138 @@
+:root{
+    --Main-Font-Size: "32 px";
+    --Main-Font-Width: "700";
+}
+
+*{
+    font-family: 'League Spartan', sans-serif;
+}
+
+.calc-container{
+    margin: 10rem auto;
+    width: 360px;
+}
+
+.calc-head{
+    display: flex;
+}
+
+.calc-head-text{
+    font-size: 25px;
+    font-weight: bold;
+    /* color: white; */
+}
+
+.calc-head-theme-button-container{
+    display: flex;
+    position: relative;
+    top: 12px;
+    left: 160px;
+}
+.calc-head-theme-button-label{
+    /* color: white; */
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 6px;
+}
+
+.calc-head-theme-counter{
+    /* color: white; */
+    margin: -3px 8px 8px 8px;
+    padding: 0;
+    font-size: 12px;
+}
+
+.calc-head-theme-button{
+    position: relative;
+    top: -5px;
+    left: 18px;
+}
+
+.calc-switch {
+    position: relative;
+}
+
+.calc-switch label {
+    width: 70px;
+    height: 23px;
+    /* background-color: #999; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50px;
+}
+
+.calc-switch input[type="text"] {
+    visibility: hidden;
+}
+
+.calc-switch label:after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50px;
+    position: absolute;
+    top: 3.5px;
+    left: 3px;
+    transition: 100ms;
+    /* background-color: green; */
+}
+  
+.calc-switch .calc-look:checked + label:after {
+    /* left: 25px; */
+    /* left: 50px; */
+}
+  
+.calc-switch .calc-look:checked + label {
+    /* background-color: lightsteelblue; */
+}
+  
+
+.calc-display{
+    width: 360px;
+    height: 100px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: right;
+    font-size: 40px;
+    font-weight: bold;
+    padding-top: 0.05px;
+}
+
+.calc-display-text{
+    margin-right: 20px;
+}
+
+.calc-keypad{
+    width: 360px;
+    height: 365px;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding-top: 12px;
+}
+
+.calc-keypad-button-row{
+    padding: 15px 20px;
+}
+
+.calc-key, .calc-key-del{
+    width: 68px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    margin-left: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.calc-key-equal, .calc-key-reset{
+    width: 148px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    margin-left: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
