@@ -105,6 +105,11 @@ function setTheme(theme = themes[0]){
     }
 }
 
+function getTheme(){
+    let getThemeId = JSON.parse(sessionStorage.getItem("theme")).id || 0;
+    return (getThemeId-1);
+}
+
     const themeButton = document.getElementById("checkbox");
     sessionStorage.setItem("theme", JSON.stringify({
         id: 1,
@@ -174,6 +179,39 @@ function setTheme(theme = themes[0]){
             setTheme(themes[2]);
         }
     });
+
+function handleNumberButton(e){
+    let themeValues = themes[getTheme()],
+        buttonValue = e.target.value,
+        display = document.getElementById("display"),
+        displayValue = display.innerText;
+
+    if(displayValue != 0){
+        // if(!(displayValue.length%3)){
+        //     displayValue += ",";
+        // }
+        displayValue += buttonValue;
+    }else{
+        displayValue = buttonValue;
+    }
+    
+
+    display.innerText = displayValue;
+}
+
+function handleDeleteButton(e){
+    let display = document.getElementById("display"),
+        displayValue = display.innerText;
+    if(displayValue != 0 && displayValue.length>1){
+        display.innerHTML = displayValue.slice(0,displayValue.length-1);
+    }else{
+        display.innerHTML = 0;
+    }
+}
+
+function handleResetButton(e){
+    document.getElementById("display").innerText = 0;
+}
 
 setTheme();
 // setTheme(themes[1]);

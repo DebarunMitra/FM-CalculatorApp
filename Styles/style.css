@@ -101,6 +101,8 @@
 
 .calc-display-text{
     margin-right: 20px;
+    width: 340px;
+    overflow-x: hidden;
 }
 
 .calc-keypad{
