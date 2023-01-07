@@ -195,8 +195,10 @@ function handleNumberButton(e){
         displayValue = buttonValue;
     }
     
+    if(displayValue.length<15){
+        display.innerText = displayValue;
+    }
 
-    display.innerText = displayValue;
 }
 
 function handleDeleteButton(e){
