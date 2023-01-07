@@ -198,21 +198,56 @@ function handleNumberButton(e){
     if(displayValue.length<15){
         display.innerText = displayValue;
     }
+}
+
+function handleNumberButton(e){
+    let themeValues = themes[getTheme()],
+        buttonValue = e.target.value,
+        displayValue = getValueFromScreen();
+
+    if(displayValue != 0){
+        // if(!(displayValue.length%3)){
+        //     displayValue += ",";
+        // }
+        displayValue += buttonValue;
+    }else{
+        displayValue = buttonValue;
+    }
+    
+    setValueOnScreen(displayValue, "NUMBER");
 
 }
 
 function handleDeleteButton(e){
-    let display = document.getElementById("display"),
-        displayValue = display.innerText;
-    if(displayValue != 0 && displayValue.length>1){
-        display.innerHTML = displayValue.slice(0,displayValue.length-1);
-    }else{
-        display.innerHTML = 0;
-    }
+    setValueOnScreen(0,e.target.value);
 }
 
 function handleResetButton(e){
-    document.getElementById("display").innerText = 0;
+    setValueOnScreen(0,e.target.value);
+}
+
+function getValueFromScreen(){
+    let getDisplayValue = document.getElementById("display").innerText;
+    return getDisplayValue;
+}
+
+function setValueOnScreen(value, eventType){
+    let display = document.getElementById("display");
+
+    if(eventType == "NUMBER"){
+        if(value.length<15){
+            display.innerText = value;
+        }
+    }else if(eventType == "DEL"){
+        if(display.innerText != 0 && display.innerText.length>1){
+            display.innerHTML = display.innerText.slice(0,display.innerText.length-1);
+        }else{
+            display.innerHTML = 0;
+        }
+    }else if(eventType == "RESET"){
+        display.innerText = 0;
+    }
+    
 }
 
 setTheme();
