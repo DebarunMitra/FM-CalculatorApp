@@ -205,7 +205,7 @@ function handleNumberButton(e){
         buttonValue = e.target.value,
         displayValue = getValueFromScreen();
 
-    if(displayValue != 0){
+    if(displayValue != 0 && displayValue.length>=1){
         // if(!(displayValue.length%3)){
         //     displayValue += ",";
         // }
@@ -215,6 +215,25 @@ function handleNumberButton(e){
     }
     
     setValueOnScreen(displayValue, "NUMBER");
+
+}
+
+function handleSymbolButton(e){
+    let themeValues = themes[getTheme()],
+        buttonValue = e.target.value,
+        displayValue = getValueFromScreen();
+
+    if(displayValue == 0){
+        if(buttonValue == "."){
+            displayValue += buttonValue;
+        }else{
+            confirm("Operator Unavailable For The Operation!");
+        }
+    }else{
+        displayValue += buttonValue;
+    }
+    
+    setValueOnScreen(displayValue, "OPERATION");
 
 }
 
@@ -234,7 +253,7 @@ function getValueFromScreen(){
 function setValueOnScreen(value, eventType){
     let display = document.getElementById("display");
 
-    if(eventType == "NUMBER"){
+    if(eventType == "NUMBER" || eventType == "OPERATION"){
         if(value.length<15){
             display.innerText = value;
         }
@@ -248,6 +267,10 @@ function setValueOnScreen(value, eventType){
         display.innerText = 0;
     }
     
+}
+
+function handleEqualButton(){
+    // let screenValue = getValueFromScreen();
 }
 
 setTheme();
