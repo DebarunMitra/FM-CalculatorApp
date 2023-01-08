@@ -180,25 +180,33 @@ function getTheme(){
         }
     });
 
-function handleNumberButton(e){
-    let themeValues = themes[getTheme()],
-        buttonValue = e.target.value,
-        display = document.getElementById("display"),
-        displayValue = display.innerText;
-
-    if(displayValue != 0){
-        // if(!(displayValue.length%3)){
-        //     displayValue += ",";
-        // }
-        displayValue += buttonValue;
-    }else{
-        displayValue = buttonValue;
+    function getValueFromScreen(){
+        let getDisplayValue = document.getElementById("display").innerText;
+        return getDisplayValue;
     }
     
-    if(displayValue.length<15){
-        display.innerText = displayValue;
+    function setValueOnScreen(value, eventType){
+        let display = document.getElementById("display");
+    
+        if(eventType == "NUMBER" || eventType == "OPERATION" || eventType=="RESULT"){
+            // console.log(value);
+            if(value.length<15){
+                display.innerText = value;
+            }else if(eventType=="RESULT"){
+                // console.log(Math.round(value).toFixed(2).toString());
+                display.innerText = Math.round(value).toFixed(2).toString();
+            }
+        }else if(eventType == "DEL"){
+            if(display.innerText != 0 && display.innerText.length>1){
+                display.innerHTML = display.innerText.slice(0,display.innerText.length-1);
+            }else{
+                display.innerHTML = 0;
+            }
+        }else if(eventType == "RESET"){
+            display.innerText = 0;
+        }
+        
     }
-}
 
 function handleNumberButton(e){
     let themeValues = themes[getTheme()],
@@ -227,8 +235,10 @@ function handleSymbolButton(e){
         if(buttonValue == "."){
             displayValue += buttonValue;
         }else{
-            confirm("Operator Unavailable For The Operation!");
+            confirm("Unavailable Operands!");
         }
+    }else if(displayValue.includes("/") || displayValue.includes("X") || displayValue.includes("+") || displayValue.includes("-")){
+        confirm("Multi-Operator Not Available!");
     }else{
         displayValue += buttonValue;
     }
@@ -245,32 +255,48 @@ function handleResetButton(e){
     setValueOnScreen(0,e.target.value);
 }
 
-function getValueFromScreen(){
-    let getDisplayValue = document.getElementById("display").innerText;
-    return getDisplayValue;
-}
+function handleEqualButton(e){
+    let screenValue = getValueFromScreen(), firstNumber = 0, secondNumber = 0, result = 0;
 
-function setValueOnScreen(value, eventType){
-    let display = document.getElementById("display");
-
-    if(eventType == "NUMBER" || eventType == "OPERATION"){
-        if(value.length<15){
-            display.innerText = value;
-        }
-    }else if(eventType == "DEL"){
-        if(display.innerText != 0 && display.innerText.length>1){
-            display.innerHTML = display.innerText.slice(0,display.innerText.length-1);
+    if(screenValue.includes("/")){
+        if(screenValue.split("/").length>=2 && screenValue.split("/")[1]!=""){
+            firstNumber = parseInt(screenValue.split("/")[0]);
+            secondNumber = parseInt(screenValue.split("/")[1]);
+            result = firstNumber/secondNumber;
+            setValueOnScreen(result.toString(), "RESULT");
         }else{
-            display.innerHTML = 0;
-        }
-    }else if(eventType == "RESET"){
-        display.innerText = 0;
+            alert("Unavailable Operand!");
+        }      
+    }else if(screenValue.includes("X")){
+        if(screenValue.split("X").length>=2 && screenValue.split("X")[1]!=""){
+            firstNumber = parseInt(screenValue.split("X")[0]);
+            secondNumber = parseInt(screenValue.split("X")[1]);
+            result = firstNumber*secondNumber;
+            setValueOnScreen(result.toString(), "RESULT");
+        }else{
+            alert("Unavailable Operand!");
+        }      
+    }else if(screenValue.includes("+")){
+        if(screenValue.split("+").length>=2 && screenValue.split("+")[1]!=""){
+            firstNumber = parseInt(screenValue.split("+")[0]);
+            secondNumber = parseInt(screenValue.split("+")[1]);
+            result = firstNumber+secondNumber;
+            setValueOnScreen(result.toString(), "RESULT");
+        }else{
+            alert("Unavailable Operand!");
+        }      
+    }else if(screenValue.includes("-")){
+        if(screenValue.split("-").length>=2 && screenValue.split("-")[1]!=""){
+            firstNumber = parseInt(screenValue.split("-")[0]);
+            secondNumber = parseInt(screenValue.split("-")[1]);
+            result = firstNumber-secondNumber;
+            setValueOnScreen(result.toString(), "RESULT");
+        }else{
+            alert("Unavailable Operand!");
+        }      
+    }else{
+        confirm("Unavailable Operator And Operands!")
     }
-    
-}
-
-function handleEqualButton(){
-    // let screenValue = getValueFromScreen();
 }
 
 setTheme();
