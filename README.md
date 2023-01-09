@@ -37,7 +37,7 @@ Users should be able to:
 
 ![Desktop-Theme-3](./screenshots/fm-calculator-app-desktop-t3.PNG)
 
-![Mobile](./screensots/fm-calculator-app-mobile-all.png)
+![Mobile](./screenshots/fm-calculator-app-mobile-all.png)
 
 ### Links
 
