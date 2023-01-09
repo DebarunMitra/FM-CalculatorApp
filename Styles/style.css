@@ -22,11 +22,16 @@
     font-weight: bold;
 }
 
+h1{
+    font-size: 25px;
+    font-weight: bold;
+}
+
 .calc-head-theme-button-container{
     display: flex;
     position: relative;
-    top: 12px;
-    left: 160px;
+    top: 8px;
+    left: 190px;
 }
 .calc-head-theme-button-label{
     font-size: 12px;
