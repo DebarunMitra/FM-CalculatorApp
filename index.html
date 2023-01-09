@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="./Styles/style.css">
 </head>
 <body>
-<div class="calc-container">
-  <div role="header" class="calc-head">
+<div role="main" class="calc-container">
+  <div role="navigation" class="calc-head">
     <div class="calc-head-text">
       <h1>calc</h1>
     </div>
@@ -28,10 +28,10 @@
       </div>
     </div>
   </div>
-  <div role="display" class="calc-display">
+  <div class="calc-display">
     <p id="display" class="calc-display-text">0</p>
   </div>
-  <div role="keypad" class="calc-keypad">
+  <div role="contentinfo" class="calc-keypad">
     <div class="calc-keypad-button-row">
       <button class="calc-key" type="button" value="1" onclick="handleNumberButton(event);">1</button>
       <button class="calc-key" type="button" value="2" onclick="handleNumberButton(event);">2</button>
