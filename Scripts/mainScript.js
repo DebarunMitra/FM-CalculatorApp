@@ -300,5 +300,3 @@ function handleEqualButton(e){
 }
 
 setTheme();
-// setTheme(themes[1]);
-// setTheme(themes[2]);
